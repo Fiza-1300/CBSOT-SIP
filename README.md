@@ -1,4 +1,4 @@
-# Customer Churn Prediction Retention and Segmentation Analysis
+# Customer Churn Prediction, Retention and Segmentation Analysis
 
 ## Project Overview
 Customer churn is one of the biggest challenges faced by telecom companies. Losing existing customers directly impacts revenue and business growth. This project uses Machine Learning techniques to predict whether a customer is likely to leave the company and applies customer segmentation to identify different groups of customers for targeted business strategies.
