@@ -81,3 +81,220 @@ The dataset has fewer churn cases than non-churn cases. I used `class_weight='ba
 | F1 Score (Churn) | 59% |
 
 **Classification Report:**
+
+precision recall f1-score support
+0 0.83 0.90 0.86 1009
+1 0.67 0.52 0.59 400
+
+accuracy 0.79 1409
+macro avg 0.75 0.71 0.72 1409
+weighted avg 0.78 0.79 0.78 1409
+
+
+
+---
+
+### Approach 2: Hyperparameter Tuning
+I experimented with different numbers of trees and tree depths to find the optimal configuration.
+
+**Best Configuration:** n_estimators=350, max_depth=11
+
+**Results:**
+
+| Metric | Score |
+|--------|-------|
+| Accuracy | 79% |
+| Precision (Churn) | 60% |
+| Recall (Churn) | 72% |
+| F1 Score (Churn) | 66% |
+
+**Classification Report:**
+precision recall f1-score support
+0 0.88 0.81 0.84 1009
+1 0.60 0.72 0.66 400
+
+accuracy 0.79 1409
+macro avg 0.74 0.77 0.75 1409
+weighted avg 0.80 0.79 0.79 1409
+
+
+
+
+The tuned model significantly improved recall from 52% to 72%.
+
+---
+
+### Approach 3: Feature Importance Analysis
+I analyzed which features matter most for predicting churn.
+
+**Top Features:**
+1. Tenure Months
+2. Monthly Charges
+3. Contract Type
+4. Total Charges
+5. Tech Support
+6. Payment Method
+
+I dropped the least important features and retrained the model.
+
+**Results:**
+
+| Metric | Score |
+|--------|-------|
+| Accuracy | 78% |
+| Precision (Churn) | 60% |
+| Recall (Churn) | 72% |
+| F1 Score (Churn) | 66% |
+
+---
+
+### Approach 4: Finding Best Combination
+I systematically tested different combinations of trees and depth values.
+
+**Top 5 Results:**
+
+| Trees | Depth | Accuracy | Recall | Precision | F1 Score |
+|-------|-------|----------|--------|-----------|----------|
+| 200 | 5 | 80% | 66% | 56% | 61% |
+| 200 | 10 | 80% | 66% | 56% | 61% |
+| 200 | 15 | 80% | 66% | 56% | 61% |
+| 200 | 20 | 80% | 65% | 56% | 60% |
+| 100 | 5 | 80% | 65% | 56% | 60% |
+
+---
+
+### Final Model Performance
+After all approaches, I selected **RandomForestClassifier with n_estimators=300, max_depth=10, and balanced weights**.
+
+**Cross-Validation Scores (5-fold):**
+
+| Metric | Score |
+|--------|-------|
+| Mean Accuracy | 78% |
+| Mean Recall | 73% |
+| ROC-AUC | 0.86 |
+
+**Confusion Matrix:**
+
+Predicted
+No Yes
+Actual No 907 102
+Actual Yes 191 209
+
+
+---
+
+### Model Comparison Summary
+
+| Approach | Accuracy | Precision | Recall | F1 Score |
+|----------|----------|-----------|--------|----------|
+| Baseline | 80% | 68% | 52% | 59% |
+| Balanced Weights | 79% | 67% | 52% | 59% |
+| Hyperparameter Tuned | 79% | 60% | 72% | 66% |
+| Feature Selection | 78% | 60% | 72% | 66% |
+| Final Model (CV) | 78% | - | 73% | - |
+
+---
+
+## Customer Segmentation
+
+I used **K-Means clustering** to group customers based on their behavior.
+
+**The Three Customer Segments:**
+
+### Segment 0: Budget Loyal Customers
+- **Average Tenure:** 35 months
+- **Average Monthly Charges:** $50
+- **Churn Probability:** 20%
+- **Characteristics:** Stable, value-driven customers
+- **Strategy:** Maintain pricing, reward loyalty
+
+### Segment 1: High Risk New Customers
+- **Average Tenure:** 8 months
+- **Average Monthly Charges:** $75
+- **Churn Probability:** 65%
+- **Characteristics:** Recent customers at high risk
+- **Strategy:** Welcome programs, early check-ins
+
+### Segment 2: Loyal Premium Customers
+- **Average Tenure:** 40 months
+- **Average Monthly Charges:** $95
+- **Churn Probability:** 35%
+- **Characteristics:** Long-term, high spenders
+- **Strategy:** Rewards program, premium features
+
+---
+
+## Business Recommendations
+
+### For High Risk New Customers:
+- Offer welcome discounts for first 6 months
+- Set up early check-in calls at 1 month and 3 months
+- Provide free tech support trial
+- Offer incentives to sign yearly contracts
+
+### For Loyal Premium Customers:
+- Create loyalty rewards program
+- Offer premium features at reduced rates
+- Send personalized service updates
+- Provide dedicated support line
+
+### For Budget Loyal Customers:
+- Maintain competitive pricing
+- Upsell additional services carefully
+- Reward tenure with small perks
+- Focus on value communication
+
+### Overall Strategy:
+- Convert month-to-month customers to yearly contracts
+- Proactive support for high-risk customers
+- Monitor early tenure period closely
+- Use churn probability scores for targeted retention
+
+---
+
+## Technical Details
+
+**Tools Used:**
+- Python with Pandas and NumPy for data handling
+- Matplotlib and Seaborn for visualizations
+- Scikit-learn for machine learning
+- Google Colab for development
+
+---
+
+## Files in This Project
+
+- `CBSOT_SIP_1.ipynb` - Complete analysis and modeling notebook
+- `Telco_customer_churn.xlsx` - The dataset used
+- `README.md` - Project documentation
+
+---
+
+## How to Run This Project
+
+1. Open the notebook in Google Colab
+2. Upload the Excel file to the Colab environment
+3. Run all cells sequentially
+4. View the visualizations and results
+
+---
+
+## Future Improvements
+
+- Build a web app for real-time churn prediction
+- Add SHAP explanations for model interpretability
+- Try XGBoost or LightGBM for better performance
+- Create automated reports for business teams
+
+---
+
+## Contributors
+
+- **Fiza-1300** - Project Creator
+
+---
+
+## License
+
+This project is licensed under the MIT License.
