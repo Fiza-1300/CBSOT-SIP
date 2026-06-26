@@ -1,4 +1,4 @@
-# Customer Churn Prediction & Segmentation
+# Customer Churn Prediction Retention and Segmentation Analysis
 
 ## Project Overview
 Customer churn is one of the biggest challenges faced by telecom companies. Losing existing customers directly impacts revenue and business growth. This project uses Machine Learning techniques to predict whether a customer is likely to leave the company and applies customer segmentation to identify different groups of customers for targeted business strategies.
@@ -80,16 +80,6 @@ The dataset has fewer churn cases than non-churn cases. I used `class_weight='ba
 | Recall (Churn) | 52% |
 | F1 Score (Churn) | 59% |
 
-**Classification Report:**
-
-precision recall f1-score support
-0 0.83 0.90 0.86 1009
-1 0.67 0.52 0.59 400
-
-accuracy 0.79 1409
-macro avg 0.75 0.71 0.72 1409
-weighted avg 0.78 0.79 0.78 1409
-
 
 
 ---
@@ -107,16 +97,6 @@ I experimented with different numbers of trees and tree depths to find the optim
 | Precision (Churn) | 60% |
 | Recall (Churn) | 72% |
 | F1 Score (Churn) | 66% |
-
-**Classification Report:**
-precision recall f1-score support
-0 0.88 0.81 0.84 1009
-1 0.60 0.72 0.66 400
-
-accuracy 0.79 1409
-macro avg 0.74 0.77 0.75 1409
-weighted avg 0.80 0.79 0.79 1409
-
 
 
 
